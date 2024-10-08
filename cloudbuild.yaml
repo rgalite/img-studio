@@ -4,7 +4,7 @@ steps:
       [
         'build',
         '-t',
-        'gcr.io/$PROJECT_ID/img-studio:latest',
+        '$_AR_REPO/app:latest',
         '--build-arg',
         '_NEXT_PUBLIC_PROJECT_ID=$PROJECT_ID',
         '--build-arg',
@@ -24,7 +24,10 @@ steps:
         '.',
       ]
 images:
-  - 'gcr.io/$PROJECT_ID/img-studio:latest'
+  - $_AR_REPO/app
 
 options:
-  logging: CLOUD_LOGGING_ONLY
+  dynamicSubstitutions: true
+
+substitutions:
+  _AR_REPO: europe-west9-docker.pkg.dev/${PROJECT_ID}/img-studio
